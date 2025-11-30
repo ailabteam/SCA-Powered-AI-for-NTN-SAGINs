@@ -1,0 +1,11 @@
+# Python specific ignores
+*.pyc
+__pycache__/
+*.log
+temp/
+
+# Conda environment
+sca-ntn-env/
+
+# Plot outputs
+*.pdf

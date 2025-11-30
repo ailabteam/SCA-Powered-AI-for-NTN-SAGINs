@@ -1,0 +1,38 @@
+name: sca-ntn-env
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+dependencies:
+  # Cơ sở và Python
+  - python=3.9
+  - pip
+  - numpy
+  - scipy
+  - matplotlib
+  - joblib
+  - tqdm
+
+  # Tối ưu hóa Lồi
+  - cvxpy=1.4.2           # Phiên bản ổn định và phổ biến
+  - pypoard             # Thư viện cho Fractional Programming (có thể cần sau này)
+
+  # Học sâu (Tối ưu cho CUDA 12.1/12.5)
+  - pytorch=2.3.1
+  - torchvision=0.18.1
+  - torchaudio=2.3.1
+  - cuda-toolkit=12.1     # Sử dụng CUDA 12.1 toolkit, tương thích ngược với driver 12.5 của bạn
+
+  # Thư viện AI bổ sung
+  - scikit-learn
+  - networkx              # Xử lý đồ thị
+
+  # Thư viện cho GNN (PyTorch Geometric)
+  # Chúng ta sẽ cài đặt riêng qua pip để đảm bảo tương thích với phiên bản PyTorch và CUDA đã chọn.
+  - pip:
+    - pyyaml
+    - torch-scatter
+    - torch-sparse
+    - torch-geometric     # Thư viện chính cho GNN
+    - ninja               # Hỗ trợ compile các extension của PyG
