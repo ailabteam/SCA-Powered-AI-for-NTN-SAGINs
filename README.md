@@ -104,6 +104,16 @@ The implementation in `src/02_Advanced_SCA_Algorithms/adaptive_sca_convergence.p
 *   **Stability Trade-off:** The experiment exposed a trade-off. While fast, the algorithm showed susceptibility to numerical errors (`Rate=nan` and `No improvement`) as it neared convergence, requiring frequent reduction of the Trust Region radius.
 *   **Conclusion:** Adaptive methods are vital for real-time optimization in dynamic NTN environments, but require careful numerical stabilization techniques (e.g., handling extreme power values or gradients) to maintain robustness near the optimal point.
 
+
+### Phase III: AI Integration Frameworks (`src/03_AI_Integration_Frameworks`)
+
+| Task ID | Title | Description and Integration |
+| :--- | :--- | :--- |
+| **Task 7** | **SCA-Optimized Federated Learning (FL)** | Use SCA to optimize the **communication resources** (power, bandwidth, scheduling) of the satellite/ground clients in an FL setting, minimizing training latency or energy cost while maintaining learning performance. |
+| **Task 8** | **GNN-Aided Resource Allocation** | Implement a hybrid system where a **GNN** models the dynamic NTN topology and predicts traffic/channel state, and **SCA** then uses these learned features to perform optimal dynamic resource allocation (e.g., routing). |
+| **Task 9** | **Transfer Learning for SCA Warm-Start** | Demonstrate how optimal solutions derived from one SCA problem instance (Source Domain, e.g., low-density network) can be used via Transfer Learning to provide a highly effective warm-start for a new SCA problem (Target Domain, e.g., high-density network). |
+
+
 ### ✅ Task 7: SCA-Optimized Federated Learning Analysis
 
 The implementation in `src/03_AI_Integration_Frameworks/fl_resource_sca.py` integrates SCA into the communication phase of an FL environment, aiming to minimize communication time by maximizing the Sum-Rate of parameter transmission.
@@ -113,13 +123,15 @@ The implementation in `src/03_AI_Integration_Frameworks/fl_resource_sca.py` inte
 *   **Resource Strategy:** The SCA solution reaffirmed the Sum-Rate strategy: concentrating maximum allowed power on the single client with the best channel (Channel Selection). In the FL context, this translates to **prioritizing the fastest links** to reduce overall communication latency.
 *   **Warm-Start for Stability:** The sequential calling of SCA in subsequent FL rounds (using the previous optimal power as a starting point) demonstrates effective **Warm-Starting**, ensuring near-instantaneous convergence of the resource optimization problem in a static channel environment.
 
-### Phase III: AI Integration Frameworks (`src/03_AI_Integration_Frameworks`)
 
-| Task ID | Title | Description and Integration |
-| :--- | :--- | :--- |
-| **Task 7** | **SCA-Optimized Federated Learning (FL)** | Use SCA to optimize the **communication resources** (power, bandwidth, scheduling) of the satellite/ground clients in an FL setting, minimizing training latency or energy cost while maintaining learning performance. |
-| **Task 8** | **GNN-Aided Resource Allocation** | Implement a hybrid system where a **GNN** models the dynamic NTN topology and predicts traffic/channel state, and **SCA** then uses these learned features to perform optimal dynamic resource allocation (e.g., routing). |
-| **Task 9** | **Transfer Learning for SCA Warm-Start** | Demonstrate how optimal solutions derived from one SCA problem instance (Source Domain, e.g., low-density network) can be used via Transfer Learning to provide a highly effective warm-start for a new SCA problem (Target Domain, e.g., high-density network). |
+### ✅ Task 8: GNN-Aided Resource Allocation Analysis
+
+The implementation in `src/03_AI_Integration_Frameworks/gnn_resource_sca.py` constructs a novel hybrid model where a Graph Convolutional Network (GCN) predicts the Channel State Information (CSI), and SCA uses this predicted CSI to perform optimal power allocation.
+
+#### Key Results & Learning Outcome:
+*   **Decoupling AI and Optimization:** This task confirms the ideal hybrid architecture: the GNN handles the non-linear feature extraction and prediction task (forecasting the Interference/Channel Matrix $\mathbf{H}$), while the SCA module handles the final non-convex optimization, ensuring the resulting power vector $\mathbf{p}^*$ adheres to hard physical constraints.
+*   **Performance Trade-off:** The hybrid model achieved a Sum-Rate approximately **15.7% lower** than the theoretical baseline (SCA with perfect CSI). This demonstrates the practical trade-off in dynamic NTN environments: accepting a modest performance loss in exchange for fast, predictive optimization using imperfect CSI derived from GNNs.
+
 
 ### Phase IV: NTN/SAGINs Practical Applications (`src/04_Satellite_Use_Cases`)
 
