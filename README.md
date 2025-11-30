@@ -85,6 +85,15 @@ The implementation in `src/02_Advanced_SCA_Algorithms/admm_sca_distributed_power
 *   **Convergence and Stability:** The ADMM outer loop converged rapidly (e.g., 3 iterations) due to its inherent efficiency. However, the reliance on stable local SCA solutions was highlighted by **frequent solver failures** in the inner loop, emphasizing the need for robust parameter tuning ($\rho$, Trust Region) in nested SCA/ADMM algorithms.
 *   **Relevance to NTN:** This architecture is fundamental for managing resources in complex decentralized scenarios like **Federated Learning over Satellite Networks** (Task 7) or distributed beamforming control.
 
+### ✅ Task 5: Non-Convex Constraint Handling Analysis
+
+The implementation in `src/02_Advanced_SCA_Algorithms/non_convex_qos_sca.py` tackles the Power Minimization problem under a non-convex Quality-of-Service (QoS) rate constraint ($R_k \ge R_{\min}$).
+
+#### Key Results & Learning Outcome:
+*   **Methodology:** The non-convex rate constraint was correctly transformed into a sequence of convex constraints using a **first-order Taylor approximation** as a convex upper bound for the concave term $\log(B_k(\mathbf{p}))$.
+*   **Infeasibility Challenge:** The algorithm consistently resulted in an **"infeasible"** status for the convex sub-problem. This is a critical learning outcome, demonstrating that the Taylor approximation, while ensuring convexity, can be too restrictive (over-conservative) at the initial point, effectively eliminating the feasible region of the sub-problem.
+*   **Conclusion:** This task successfully illustrates a fundamental challenge in applying SCA to constrained problems. In practical scenarios, this infeasibility is typically resolved by introducing **slack variables** and penalty terms (a more advanced technique) or by first solving a **feasibility search problem** to find a valid starting point.
+
 ### Phase III: AI Integration Frameworks (`src/03_AI_Integration_Frameworks`)
 
 | Task ID | Title | Description and Integration |
