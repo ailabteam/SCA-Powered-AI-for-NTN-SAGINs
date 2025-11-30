@@ -94,6 +94,16 @@ The implementation in `src/02_Advanced_SCA_Algorithms/non_convex_qos_sca.py` tac
 *   **Infeasibility Challenge:** The algorithm consistently resulted in an **"infeasible"** status for the convex sub-problem. This is a critical learning outcome, demonstrating that the Taylor approximation, while ensuring convexity, can be too restrictive (over-conservative) at the initial point, effectively eliminating the feasible region of the sub-problem.
 *   **Conclusion:** This task successfully illustrates a fundamental challenge in applying SCA to constrained problems. In practical scenarios, this infeasibility is typically resolved by introducing **slack variables** and penalty terms (a more advanced technique) or by first solving a **feasibility search problem** to find a valid starting point.
 
+
+### ✅ Task 6: SCA Convergence Acceleration Analysis
+
+The implementation in `src/02_Advanced_SCA_Algorithms/adaptive_sca_convergence.py` utilizes the Adaptive Trust Region (ATR) technique to enhance the convergence speed of Sum-Rate maximization.
+
+#### Key Results & Learning Outcome:
+*   **Acceleration:** ATR significantly reduced the initial search phase, achieving high-quality solutions much faster (e.g., reaching peak performance in 7 iterations compared to 16 in Task 1). The adaptive mechanism ($\rho$) correctly increased the step size ($\Delta$) during periods of good improvement.
+*   **Stability Trade-off:** The experiment exposed a trade-off. While fast, the algorithm showed susceptibility to numerical errors (`Rate=nan` and `No improvement`) as it neared convergence, requiring frequent reduction of the Trust Region radius.
+*   **Conclusion:** Adaptive methods are vital for real-time optimization in dynamic NTN environments, but require careful numerical stabilization techniques (e.g., handling extreme power values or gradients) to maintain robustness near the optimal point.
+
 ### Phase III: AI Integration Frameworks (`src/03_AI_Integration_Frameworks`)
 
 | Task ID | Title | Description and Integration |
