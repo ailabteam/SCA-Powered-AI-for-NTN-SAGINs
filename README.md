@@ -51,6 +51,14 @@ The implementation in `src/01_SCA_Fundamentals/power_allocation_sca.py` successf
 *   **Optimal Strategy:** The optimal power allocation follows a strong **Channel-Selection** or **Water-Filling** strategy. Out of the 5 users, virtually all system power was allocated to a single user (User 5: $\sim 0.5$ W), while the remaining users received the minimum power ($\sim 10^{-6}$ W).
 *   **Conclusion:** This validates that in interference-limited scenarios, the non-convex Sum-Rate maximization solution found by SCA dictates prioritizing the user with the best channel gain to minimize aggregate interference and maximize total throughput.
 
+### ✅ Task 2: Fractional Programming (Dinkelbach-SCA Analysis)
+
+The implementation in `src/01_SCA_Fundamentals/energy_efficiency_sca.py` demonstrates the application of Dinkelbach's method (Outer Loop) combined with SCA (Inner Loop) to solve the non-convex fractional problem of maximizing Energy Efficiency (EE).
+
+#### Key Results:
+*   **Methodology:** The nested Dinkelbach-SCA loop proved to be highly robust and converged rapidly in just 5 iterations.
+*   **Optimal Strategy:** Unlike Sum-Rate maximization (Task 1) which utilizes high power to maximize capacity, EE maximization finds a trade-off. The optimal solution drastically **reduced the transmit power** (e.g., from 0.5W total in Task 1 down to $\sim 0.013$ W) by prioritizing the single best channel, resulting in a lower Sum-Rate but achieving significantly higher Energy Efficiency (e.g., $110+$ bits/Joule).
+*   **Conclusion:** This task highlights that for energy-constrained NTN/SAGINs, the Dinkelbach-SCA method is essential for finding the optimal power settings that maximize the system's operational lifespan by using power most efficiently.
 
 ### Phase II: Advanced SCA Algorithms (`src/02_Advanced_SCA_Algorithms`)
 
