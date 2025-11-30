@@ -132,6 +132,14 @@ The implementation in `src/03_AI_Integration_Frameworks/gnn_resource_sca.py` con
 *   **Decoupling AI and Optimization:** This task confirms the ideal hybrid architecture: the GNN handles the non-linear feature extraction and prediction task (forecasting the Interference/Channel Matrix $\mathbf{H}$), while the SCA module handles the final non-convex optimization, ensuring the resulting power vector $\mathbf{p}^*$ adheres to hard physical constraints.
 *   **Performance Trade-off:** The hybrid model achieved a Sum-Rate approximately **15.7% lower** than the theoretical baseline (SCA with perfect CSI). This demonstrates the practical trade-off in dynamic NTN environments: accepting a modest performance loss in exchange for fast, predictive optimization using imperfect CSI derived from GNNs.
 
+### ✅ Task 9: Transfer Learning for SCA Warm-Start Analysis
+
+The implementation in `src/03_AI_Integration_Frameworks/tl_warm_start_sca.py` evaluates the use of an optimal solution from a smaller network ($K_{\text{source}}=3$) to warm-start the SCA process in a larger network ($K_{\text{target}}=8$).
+
+#### Key Results & Learning Outcome:
+*   **Accelerated Convergence:** The TL Warm-Start successfully reduced the number of SCA iterations required for convergence by approximately **37%** (17 steps vs. 27 steps for the baseline), confirming its value in reducing computational latency.
+*   **Optimality vs. Speed Trade-off:** The experiment illustrated a critical trade-off: the TL Warm-Start converged faster but settled on a **lower-quality local optimum** (15.65 bits/s/Hz) compared to the equal-power baseline (17.07 bits/s/Hz).
+*   **Conclusion:** TL is crucial for speed in dynamic NTN/SAGINs where network conditions change, but the mapping function from the source domain must be carefully designed to avoid funneling the optimization into poor local optima due to new interference coupling.
 
 ### Phase IV: NTN/SAGINs Practical Applications (`src/04_Satellite_Use_Cases`)
 
