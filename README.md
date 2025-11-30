@@ -60,6 +60,14 @@ The implementation in `src/01_SCA_Fundamentals/energy_efficiency_sca.py` demonst
 *   **Optimal Strategy:** Unlike Sum-Rate maximization (Task 1) which utilizes high power to maximize capacity, EE maximization finds a trade-off. The optimal solution drastically **reduced the transmit power** (e.g., from 0.5W total in Task 1 down to $\sim 0.013$ W) by prioritizing the single best channel, resulting in a lower Sum-Rate but achieving significantly higher Energy Efficiency (e.g., $110+$ bits/Joule).
 *   **Conclusion:** This task highlights that for energy-constrained NTN/SAGINs, the Dinkelbach-SCA method is essential for finding the optimal power settings that maximize the system's operational lifespan by using power most efficiently.
 
+### ✅ Task 3: Difference of Convex (DCP/CCCP) Analysis
+
+The implementation in `src/01_SCA_Fundamentals/weighted_rate_utility_sca.py` successfully demonstrates the application of SCA/CCCP to maximize a complex utility function: $F(\mathbf{p}) = \text{Sum-Rate} - \alpha \cdot \text{Total Interference}$. This structure falls under DC Programming ($\max (\text{Concave} - \text{Convex})$).
+
+#### Key Results:
+*   **CCCP Mechanism:** The algorithm maximizes the concave Sum-Rate approximation while linearly penalizing the convex Total Interference term. This ensures that the sub-problem remains convex (Max Concave) and stable.
+*   **Extreme Interference Avoidance:** Due to the large penalty factor ($\alpha=100$), the resulting optimal solution utilizes minimal transmit power ($\sim 4.2$ mW total), drastically suppressing interference and focusing resources exclusively on the strongest channel, validating SCA's ability to handle aggressive cost functions.
+
 ### Phase II: Advanced SCA Algorithms (`src/02_Advanced_SCA_Algorithms`)
 
 | Task ID | Title | Description and SCA Technique |
