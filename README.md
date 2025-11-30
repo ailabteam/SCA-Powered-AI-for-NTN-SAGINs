@@ -104,6 +104,15 @@ The implementation in `src/02_Advanced_SCA_Algorithms/adaptive_sca_convergence.p
 *   **Stability Trade-off:** The experiment exposed a trade-off. While fast, the algorithm showed susceptibility to numerical errors (`Rate=nan` and `No improvement`) as it neared convergence, requiring frequent reduction of the Trust Region radius.
 *   **Conclusion:** Adaptive methods are vital for real-time optimization in dynamic NTN environments, but require careful numerical stabilization techniques (e.g., handling extreme power values or gradients) to maintain robustness near the optimal point.
 
+### ✅ Task 7: SCA-Optimized Federated Learning Analysis
+
+The implementation in `src/03_AI_Integration_Frameworks/fl_resource_sca.py` integrates SCA into the communication phase of an FL environment, aiming to minimize communication time by maximizing the Sum-Rate of parameter transmission.
+
+#### Key Results & Learning Outcome:
+*   **Architectural Integration:** SCA is successfully implemented as an **Inner Loop Optimization Module**, which runs at the start of every FL communication round (before model aggregation) to decide the optimal transmit power configuration.
+*   **Resource Strategy:** The SCA solution reaffirmed the Sum-Rate strategy: concentrating maximum allowed power on the single client with the best channel (Channel Selection). In the FL context, this translates to **prioritizing the fastest links** to reduce overall communication latency.
+*   **Warm-Start for Stability:** The sequential calling of SCA in subsequent FL rounds (using the previous optimal power as a starting point) demonstrates effective **Warm-Starting**, ensuring near-instantaneous convergence of the resource optimization problem in a static channel environment.
+
 ### Phase III: AI Integration Frameworks (`src/03_AI_Integration_Frameworks`)
 
 | Task ID | Title | Description and Integration |
