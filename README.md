@@ -76,6 +76,15 @@ The implementation in `src/01_SCA_Fundamentals/weighted_rate_utility_sca.py` suc
 | **Task 5** | **Non-Convex Constraint Handling** | Implement techniques to handle complex non-convex constraints (e.g., quality-of-service (QoS) constraints or rate constraints) by replacing them with convex approximations (linear/affine approximations). |
 | **Task 6** | **SCA Convergence Acceleration** | Explore methods to boost the convergence speed and robustness of SCA, focusing on advanced warm-start strategies and adaptive step-size adjustments (e.g., trust region methods). |
 
+### ✅ Task 4: Distributed SCA (ADMM-SCA Analysis)
+
+The implementation in `src/02_Advanced_SCA_Algorithms/admm_sca_distributed_power.py` demonstrates the integration of ADMM (Outer Loop) and SCA (Inner Loop) to find a global consensus power allocation ($\mathbf{Z}$) across multiple distributed nodes.
+
+#### Key Results:
+*   **Decentralized Optimization:** The ADMM framework successfully decomposed the global optimization into local SCA sub-problems ($\mathbf{P}_i$) penalized by the consensus deviation ($\mathbf{Z}$ and $\mathbf{U}_i$).
+*   **Convergence and Stability:** The ADMM outer loop converged rapidly (e.g., 3 iterations) due to its inherent efficiency. However, the reliance on stable local SCA solutions was highlighted by **frequent solver failures** in the inner loop, emphasizing the need for robust parameter tuning ($\rho$, Trust Region) in nested SCA/ADMM algorithms.
+*   **Relevance to NTN:** This architecture is fundamental for managing resources in complex decentralized scenarios like **Federated Learning over Satellite Networks** (Task 7) or distributed beamforming control.
+
 ### Phase III: AI Integration Frameworks (`src/03_AI_Integration_Frameworks`)
 
 | Task ID | Title | Description and Integration |
